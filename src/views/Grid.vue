@@ -12,15 +12,15 @@
         </table>
         <div class='float inline square border'>
             <div class='row centered'>
-                <a v-if="neighbors.NORTH" href='#' class='btn glyphicon glyphicon-arrow-up'>UP</a>
+                <a v-if="neighbors.NORTH" href='#' class='btn'>UP</a>
             </div>
             <div class='row'>
-                <a v-if="neighbors.WEST" href='#' class='btn glyphicon glyphicon-arrow-left'>LEFT</a>
-                <a v-if="neighbors.EAST" href='#' class='btn glyphicon glyphicon-arrow-right'>RIGHT</a>
+                <a v-if="neighbors.WEST" href='#' class='btn'>LEFT</a>
+                <a v-if="neighbors.EAST" href='#' class='btn'>RIGHT</a>
             </div>
             <div class='row centered'>
                 <a v-if="neighbors.SOUTH" href='#'
-                    class='btn glyphicon glyphicon-arrow-down centered'>DOWN</a>
+                    class='btn'>DOWN</a>
             </div>
         </div>
       </div>
