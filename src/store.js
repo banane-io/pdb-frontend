@@ -15,7 +15,7 @@ export default new Vuex.Store({
   },
   actions: {
     getGrid({ commit }) {
-      axios.get('/grid')
+      axios.get('/api/grid')
         .then(result => commit('updateGrid', result.data))
         .catch(console.error);
     },

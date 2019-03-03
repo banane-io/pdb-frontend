@@ -11,7 +11,7 @@ export default {
     this.$store.dispatch('getGrid');
   },
   computed: {
-    parts() {
+    grid() {
       return this.$store.state.grid || [];
     },
   },
