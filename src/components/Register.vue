@@ -36,8 +36,16 @@ export default {
   methods: {
     register() {
       const { username, password } = this;
-      this.$auth.register({ username, password }, { url: '/api/registration' }).then(() => {
-        console.log('Registred succesfully');
+      console.log(username + password);
+      this.$http({
+        method: 'post',
+        url: '/api/registration',
+        data: {
+          username,
+          password,
+        },
+      }).then((response) => {
+        console.log(response);
         this.$router.push('/');
       });
     },

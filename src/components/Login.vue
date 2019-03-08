@@ -23,8 +23,16 @@ export default {
   methods: {
     login() {
       const { username, password } = this;
-      this.$auth.login({ username, password }, { url: '/api/login' }).then(() => {
-        console.log('Connected succesfully');
+      const bodyFormData = new FormData();
+      bodyFormData.set('username', username);
+      bodyFormData.set('password', password);
+      this.$http({
+        method: 'post',
+        url: '/api/login',
+        data: bodyFormData,
+      }).then((response) => {
+        console.log(response);
+        this.$store.dispatch('setAuthenticated');
         this.$router.push('/');
       });
     },
