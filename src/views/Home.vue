@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
+    <div v-if="$store.authenticated">potato</div>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
