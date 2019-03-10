@@ -27,13 +27,13 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getGrid({ commit }) {
-      axios.get('/api/grid')
+    getGrid({ commit }, id) {
+      axios.get(`/api/grid/${id}`)
         .then(result => commit('updateGrid', result.data))
         .catch(console.error);
     },
-    getNeighbors({ commit }) {
-      axios.get('/api/grid/neighbors')
+    getNeighbors({ commit }, id) {
+      axios.get(`/api/grid/neighbors/${id}`)
         .then(result => commit('updateNeighbors', result.data))
         .catch(console.error);
     },

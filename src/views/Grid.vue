@@ -32,8 +32,8 @@
 export default {
   name: 'Grid',
   created() {
-    this.$store.dispatch('getGrid');
-    this.$store.dispatch('getNeighbors');
+    this.$store.dispatch('getGrid', 1);
+    this.$store.dispatch('getNeighbors', 1);
   },
   computed: {
     grid() {
