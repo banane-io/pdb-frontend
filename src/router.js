@@ -4,6 +4,7 @@ import Home from './views/Home.vue';
 import Grid from './views/Grid.vue';
 import Login from './components/Login.vue';
 import Register from './components/Register.vue';
+import PlayerCreation from './components/PlayerCreation.vue';
 
 Vue.use(Router);
 
@@ -27,6 +28,10 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register,
+    }, {
+      path: '/playerCreate',
+      name: 'playerCreate',
+      component: PlayerCreation,
     }, {
       path: '/about',
       name: 'about',
