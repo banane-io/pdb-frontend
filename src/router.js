@@ -4,7 +4,7 @@ import Home from './views/Home.vue';
 import Grid from './views/Grid.vue';
 import Login from './components/Login.vue';
 import Register from './components/Register.vue';
-import PlayerCreation from './components/PlayerCreation.vue';
+import HeroCreation from './components/HeroCreation.vue';
 
 Vue.use(Router);
 
@@ -29,9 +29,9 @@ export default new Router({
       name: 'register',
       component: Register,
     }, {
-      path: '/playerCreate',
-      name: 'playerCreate',
-      component: PlayerCreation,
+      path: '/heroCreation',
+      name: 'heroCreation',
+      component: HeroCreation,
     }, {
       path: '/about',
       name: 'about',

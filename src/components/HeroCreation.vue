@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>Player creation</h4>
+    <h4>Hero creation</h4>
     <form @submit.prevent="create">
       <label for="username">Username</label>
       <div>
@@ -27,7 +27,7 @@ export default {
       console.log(username);
       this.$http({
         method: 'post',
-        url: '/api/player/create',
+        url: '/api/hero',
         data: {
           username,
         },
