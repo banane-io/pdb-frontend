@@ -9,6 +9,7 @@ export default new Vuex.Store({
     grid: [],
     neighbors: {},
     authenticated: false,
+    hero: {},
   },
   getters: {
     isAuthenticated(state) {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     updateAuthenticated(state, authenticated) {
       state.authenticated = authenticated;
     },
+    updateHero(state, hero) {
+      state.hero = hero;
+    },
   },
   actions: {
     getGrid({ commit }, id) {
@@ -35,6 +39,11 @@ export default new Vuex.Store({
     getNeighbors({ commit }, id) {
       axios.get(`/api/grid/neighbors/${id}`)
         .then(result => commit('updateNeighbors', result.data))
+        .catch(console.error);
+    },
+    getHero({ commit }) {
+      axios.get('/api/hero')
+        .then(result => commit('updateHero', result))
         .catch(console.error);
     },
     setAuthenticated({ commit }) {
