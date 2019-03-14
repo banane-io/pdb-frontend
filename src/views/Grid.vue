@@ -10,6 +10,7 @@
             </td>
           </tr>
         </table>
+        <Hero/>
         <div class='float inline square border'>
             <div class='row centered'>
                 <a v-if="neighbors.NORTH" href='#' class='btn'>UP</a>
@@ -29,8 +30,11 @@
 </template>
 
 <script>
+import Hero from '../components/Hero.vue';
+
 export default {
   name: 'Grid',
+  components: [Hero],
   created() {
     this.$store.dispatch('getGrid', 1);
     this.$store.dispatch('getNeighbors', 1);
