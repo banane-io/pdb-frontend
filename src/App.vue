@@ -8,6 +8,7 @@
       <router-link v-if="!isLoggedIn" to="/register">Register</router-link> |
       <button @click="authLogout()" v-if="isLoggedIn" >Logout</button>
     </div>
+    <div>{{$store.status}}</div>
     <router-view/>
   </div>
 </template>
@@ -17,19 +18,13 @@ export default {
   name: 'App',
   computed: {
     isLoggedIn() {
-      return this.$store.state.authenticated;
+      return this.$store.getters.isAuthenticated;
     },
   },
   methods: {
     authLogout() {
-      this.$http({
-        method: 'get',
-        url: '/api/logout',
-      }).then((response) => {
-        console.log(response);
-        this.$store.dispatch('unsetAuthenticated');
-        this.$router.push('/');
-      });
+      this.$store.dispatch('authLogout');
+      this.$router.push('/');
     },
   },
 };
