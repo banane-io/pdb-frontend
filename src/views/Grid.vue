@@ -34,7 +34,7 @@ import Hero from '../components/Hero.vue';
 
 export default {
   name: 'Grid',
-  components: [Hero],
+  components: { Hero },
   created() {
     this.$store.dispatch('getGrid', 1);
     this.$store.dispatch('getNeighbors', 1);

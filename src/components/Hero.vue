@@ -1,13 +1,20 @@
 <template>
   <div>
-    <label for="username">Username</label>
-    <div></div>
-    <label for="strenght">Strenght</label>
-    <div></div>
-    <label for="agility">agility</label>
-    <div></div>
-    <label for="intelligence">Intelligence</label>
-    <div></div>
+      <h2>
+          {{hero.username}}
+      </h2>
+      <label for="strength">Strength</label>
+      <div>
+          {{hero.strength}}
+      </div>
+      <label for="agility">Agility</label>
+      <div>
+          {{hero.agility}}
+      </div>
+      <label for="intelligence">Intelligence</label>
+      <div>
+          {{hero.intelligence}}
+      </div>
   </div>
 </template>
 
