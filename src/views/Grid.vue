@@ -1,28 +1,36 @@
 <template>
   <div>
     <h1>Grid system</h1>
-    <div class="row">
-      <div class="float">
-        <table class="table-bordered inline centered">
-          <tr v-for="(lines, index) in grid" :key="index">
-            <td v-for="(zone) in lines" :key="zone.id" :class="zone.terrain">
-              <input type="radio" :id="zone.id" :value="zone.id" name="grid" class="grid_point">
-            </td>
-          </tr>
-        </table>
+    <div class="wrapper">
+      <table class="grid">
+        <tr v-for="(lines, index) in grid" :key="index">
+          <td v-for="(zone) in lines" :key="zone.id" :class="zone.terrain">
+            <input type="radio" :id="zone.id" :value="zone.id" name="grid" class="grid_point" :checked="zone.id == currentZone.id">
+          </td>
+        </tr>
+      </table>
+      <div class="hero">
         <Hero/>
-        <div class='float inline square border'>
-            <div class='row centered'>
-                <a v-if="neighbors.NORTH" href='#' class='btn'>UP</a>
-            </div>
-            <div class='row'>
-                <a v-if="neighbors.WEST" href='#' class='btn'>LEFT</a>
-                <a v-if="neighbors.EAST" href='#' class='btn'>RIGHT</a>
-            </div>
-            <div class='row centered'>
-                <a v-if="neighbors.SOUTH" href='#'
-                    class='btn'>DOWN</a>
-            </div>
+        <div>
+            <a v-if="neighbors.NORTH" href='#' class='btn'>UP</a>
+        </div>
+        <div>
+            <a v-if="neighbors.WEST" href='#' class='btn'>LEFT</a>
+            <a v-if="neighbors.EAST" href='#' class='btn'>RIGHT</a>
+        </div>
+        <div>
+            <a v-if="neighbors.SOUTH" href='#'
+                class='btn'>DOWN</a>
+        </div>
+
+        <div class="currentZone">
+          <h2>Current Zone:</h2>
+          <label for="x">X</label>
+          {{currentZone.x}}
+          <label for="y">Y</label>
+          {{currentZone.y}}
+          <label for="description">Description</label>
+          {{currentZone.zone}}
         </div>
       </div>
     </div>
@@ -36,8 +44,10 @@ export default {
   name: 'Grid',
   components: { Hero },
   created() {
-    this.$store.dispatch('getGrid', 1);
-    this.$store.dispatch('getNeighbors', 1);
+    const zoneId = this.$store.state.hero.currentZone;
+    this.$store.dispatch('getGrid', zoneId);
+    this.$store.dispatch('getNeighbors', zoneId);
+    this.$store.dispatch('getZone', zoneId);
   },
   computed: {
     grid() {
@@ -45,6 +55,9 @@ export default {
     },
     neighbors() {
       return this.$store.state.neighbors || {};
+    },
+    currentZone() {
+      return this.$store.state.currentZone || {};
     },
   },
 };
@@ -68,5 +81,20 @@ export default {
 }
 .BRIDGE {
   background-color: SaddleBrown;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-left:40px;
+  margin-right: 40px;
+  height: 600px;
+}
+.grid{
+  grid-column-start: 1;
+  grid-column: span 3;
+}
+.hero {
+  grid-column-end: 5;
 }
 </style>

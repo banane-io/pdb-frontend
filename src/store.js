@@ -12,6 +12,7 @@ export default new Vuex.Store({
   state: {
     grid: [],
     neighbors: {},
+    currentZone: {},
     hero: null,
   },
   mutations: {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     updateNeighbors(state, neighbors) {
       state.neighbors = neighbors;
+    },
+    updateCurrentZone(state, currentZone) {
+      state.currentZone = currentZone;
     },
     updateHero(state, hero) {
       state.hero = hero;
@@ -34,6 +38,11 @@ export default new Vuex.Store({
     getNeighbors({ commit }, id) {
       axios.get(`/api/grid/neighbors/${id}`)
         .then(result => commit('updateNeighbors', result.data))
+        .catch(console.error);
+    },
+    getZone({ commit }, id) {
+      axios.get(`/api/mapPoint/${id}`)
+        .then(result => commit('updateCurrentZone', result.data))
         .catch(console.error);
     },
     getHero({ commit }) {
