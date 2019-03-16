@@ -2,15 +2,22 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link v-if="isLoggedIn" to="/grid">Grid</router-link> |
-      <router-link v-if="isLoggedIn && !this.$store.state.hero" to="/heroCreation">
-        Hero creation
-      </router-link> |
-      <router-link v-if="!isLoggedIn" to="/login">Login</router-link> |
-      <router-link v-if="!isLoggedIn" to="/register">Register</router-link> |
+      <span v-if="isLoggedIn">
+        <router-link to="/grid">Grid</router-link> |
+      </span>
+      <span v-if="isLoggedIn && !this.$store.state.hero">
+        <router-link to="/heroCreation">
+          Hero creation
+        </router-link> |
+      </span>
+      <span v-if="!isLoggedIn">
+        <router-link to="/login">Login</router-link> |
+      </span>
+      <span v-if="!isLoggedIn">
+        <router-link to="/register">Register</router-link> |
+      </span>
       <button @click="authLogout()" v-if="isLoggedIn" >Logout</button>
     </div>
-    <div>{{$store.status}}</div>
     <router-view/>
   </div>
 </template>
