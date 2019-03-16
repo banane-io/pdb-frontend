@@ -20,12 +20,12 @@ export default {
   name: 'App',
   computed: {
     isLoggedIn() {
-      return this.$store.getters.isAuthenticated;
+      return this.$store.getters['auth/isAuthenticated'];
     },
   },
   methods: {
     authLogout() {
-      this.$store.dispatch('authLogout');
+      this.$store.dispatch('auth/authLogout');
       this.$router.push('/');
     },
   },
