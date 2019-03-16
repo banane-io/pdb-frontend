@@ -3,7 +3,9 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link v-if="isLoggedIn" to="/grid">Grid</router-link> |
-      <router-link v-if="isLoggedIn" to="/heroCreation">Hero creation</router-link> |
+      <router-link v-if="isLoggedIn && !this.$store.state.hero" to="/heroCreation">
+        Hero creation
+      </router-link> |
       <router-link v-if="!isLoggedIn" to="/login">Login</router-link> |
       <router-link v-if="!isLoggedIn" to="/register">Register</router-link> |
       <button @click="authLogout()" v-if="isLoggedIn" >Logout</button>

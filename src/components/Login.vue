@@ -23,7 +23,11 @@ export default {
   methods: {
     login() {
       const { username, password } = this;
-      this.$store.dispatch('authRequest', { username, password }).then(() => { this.$router.push('/'); });
+      this.$store.dispatch('authRequest', { username, password })
+        .then(() => {
+          this.$store.dispatch('getHero');
+          this.$router.push('/');
+        });
     },
   },
 

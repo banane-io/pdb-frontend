@@ -11,7 +11,7 @@ export default new Vuex.Store({
     neighbors: {},
     status: '',
     auth: cookies.get('auth') || false,
-    hero: {},
+    hero: null,
   },
   getters: {
     isAuthenticated(state) {
@@ -100,7 +100,7 @@ export default new Vuex.Store({
     },
     getHero({ commit }) {
       axios.get('/api/hero')
-        .then(result => commit('updateHero', result))
+        .then(result => commit('updateHero', result.data))
         .catch(console.error);
     },
     setAuthenticated({ commit }) {
