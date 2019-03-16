@@ -2,7 +2,7 @@ import axios from 'axios';
 import cookies from 'vue-cookies';
 
 export default {
-  namespace: true,
+  namespaced: true,
   state: {
     status: '',
     auth: cookies.get('auth') || false,

@@ -23,7 +23,6 @@ export default {
   methods: {
     login() {
       const { username, password } = this;
-      console.log(this);
       this.$store.dispatch('auth/authRequest', { username, password })
         .then(() => {
           this.$store.dispatch('getHero');
