@@ -44,7 +44,7 @@ export default {
   name: 'Grid',
   components: { Hero },
   created() {
-    this.fetchGridData();
+    this.fetchGridData(this.$store.state.hero.currentZone);
   },
   computed: {
     grid() {
@@ -58,14 +58,14 @@ export default {
     },
   },
   methods: {
-    fetchGridData() {
-      const zoneId = this.$store.state.hero.currentZone;
+    fetchGridData(zoneId) {
+      this.$store.dispatch('getHero');
       this.$store.dispatch('getGrid', zoneId);
       this.$store.dispatch('getNeighbors', zoneId);
       this.$store.dispatch('getZone', zoneId);
     },
     movePlayer(zone) {
-      this.$http.post(`/api/hero/movePlayer/${zone.id}`).then((response) => { console.log(response); this.fetchGridData(); });
+      this.$http.post(`/api/hero/movePlayer/${zone.id}`).then((response) => { console.log(response); this.fetchGridData(zone.id); });
     },
   },
 };
