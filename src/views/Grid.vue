@@ -12,15 +12,15 @@
       <div class="hero">
         <Hero/>
         <div>
-            <a v-if="neighbors.NORTH" href='#' class='btn'>UP</a>
+            <button @click="movePlayer(neighbors.NORTH)" v-if="neighbors.NORTH" href='#' >UP</button>
         </div>
         <div>
-            <a v-if="neighbors.WEST" href='#' class='btn'>LEFT</a>
-            <a v-if="neighbors.EAST" href='#' class='btn'>RIGHT</a>
+            <button @click="movePlayer(neighbors.WEST)" v-if="neighbors.WEST" href='#' >LEFT</button>
+            <button @click="movePlayer(neighbors.EAST)" v-if="neighbors.EAST" href='#' >RIGHT</button>
         </div>
         <div>
-            <a v-if="neighbors.SOUTH" href='#'
-                class='btn'>DOWN</a>
+            <button @click="movePlayer(neighbors.SOUTH)" v-if="neighbors.SOUTH" href='#'
+                >DOWN</button>
         </div>
 
         <div class="currentZone">
@@ -44,10 +44,7 @@ export default {
   name: 'Grid',
   components: { Hero },
   created() {
-    const zoneId = this.$store.state.hero.currentZone;
-    this.$store.dispatch('getGrid', zoneId);
-    this.$store.dispatch('getNeighbors', zoneId);
-    this.$store.dispatch('getZone', zoneId);
+    this.fetchGridData();
   },
   computed: {
     grid() {
@@ -58,6 +55,17 @@ export default {
     },
     currentZone() {
       return this.$store.state.currentZone || {};
+    },
+  },
+  methods: {
+    fetchGridData() {
+      const zoneId = this.$store.state.hero.currentZone;
+      this.$store.dispatch('getGrid', zoneId);
+      this.$store.dispatch('getNeighbors', zoneId);
+      this.$store.dispatch('getZone', zoneId);
+    },
+    movePlayer(zone) {
+      this.$http.post(`/api/hero/movePlayer/${zone.id}`).then((response) => { console.log(response); this.fetchGridData(); });
     },
   },
 };
