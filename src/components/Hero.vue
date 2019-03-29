@@ -22,6 +22,7 @@
 export default {
   name: 'Hero',
   created() {
+    console.log('Fetching hero from store');
     this.$store.dispatch('getHero');
   },
   computed: {

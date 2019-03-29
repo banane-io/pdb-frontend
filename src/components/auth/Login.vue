@@ -25,6 +25,7 @@ export default {
       const { username, password } = this;
       this.$store.dispatch('auth/authRequest', { username, password })
         .then(() => {
+          console.log('Fetching hero and then redirecting to /');
           this.$store.dispatch('getHero');
           this.$router.push('/');
         });

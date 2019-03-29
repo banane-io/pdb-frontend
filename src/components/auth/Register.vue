@@ -36,7 +36,7 @@ export default {
   methods: {
     register() {
       const { username, password } = this;
-      console.log(username + password);
+      console.log(`Calling /api/registration for username : ${username}`);
       this.$http({
         method: 'post',
         url: '/api/registration',
@@ -46,7 +46,8 @@ export default {
         },
       }).then((response) => {
         console.log(response);
-        this.$router.push('/');
+        console.log('Registration successful redirecting to login');
+        this.$router.push('/login');
       });
     },
   },

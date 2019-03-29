@@ -40,7 +40,7 @@ export default {
       const {
         username, strength, agility, intelligence,
       } = this;
-      console.log(username);
+      console.log(`Calling /api/hero with username/strength/agility/intelligence : ${username}/${strength}/${agility}/${intelligence}`);
       this.$http({
         method: 'post',
         url: '/api/hero',
@@ -52,6 +52,7 @@ export default {
         },
       }).then((response) => {
         console.log(response);
+        console.log('Creation of the hero successful, moving to /grid');
         this.$router.push('/grid');
       });
     },

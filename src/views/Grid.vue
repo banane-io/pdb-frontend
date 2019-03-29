@@ -44,6 +44,7 @@ export default {
   name: 'Grid',
   components: { Hero },
   created() {
+    console.log(`Fetching data for hero, grid, neighbors and the zone with zoneId : ${this.$store.state.hero.currentZone}`);
     this.fetchGridData(this.$store.state.hero.currentZone);
   },
   computed: {
@@ -59,13 +60,21 @@ export default {
   },
   methods: {
     fetchGridData(zoneId) {
+      console.log(`Fetching data for hero, grid, neighbors and the zone with zoneId : ${zoneId}`);
       this.$store.dispatch('getHero');
       this.$store.dispatch('getGrid', zoneId);
       this.$store.dispatch('getNeighbors', zoneId);
       this.$store.dispatch('getZone', zoneId);
     },
     movePlayer(zone) {
-      this.$http.post(`/api/hero/movePlayer/${zone.id}`).then((response) => { console.log(response); this.fetchGridData(zone.id); });
+      console.log(`Moving hero to the new zone with id : ${zone.id}`);
+      this.$http.post(`/api/hero/movePlayer/${zone.id}`)
+        .then((response) => {
+          console.log(response);
+          console.log('Refreshing data for the grid');
+          this.fetchGridData(zone.id);
+        })
+        .catch(console.error);
     },
   },
 };
