@@ -31,6 +31,8 @@
           {{currentZone.y}}
           <label for="description">Description</label>
           {{currentZone.zone}}
+          <label for="actions">Actions</label>
+          {{currentZoneActions}}
         </div>
       </div>
     </div>
@@ -57,6 +59,9 @@ export default {
     currentZone() {
       return this.$store.state.currentZone || {};
     },
+    currentZoneActions() {
+      return this.$store.state.zoneActions || [];
+    },
   },
   methods: {
     fetchGridData(zoneId) {
@@ -65,6 +70,7 @@ export default {
       this.$store.dispatch('getGrid', zoneId);
       this.$store.dispatch('getNeighbors', zoneId);
       this.$store.dispatch('getZone', zoneId);
+      this.$store.dispatch('getZoneActions', zoneId);
     },
     movePlayer(zone) {
       console.log(`Moving hero to the new zone with id : ${zone.id}`);
@@ -84,7 +90,7 @@ export default {
 .PLAIN {
   background-color: green;
 }
-.SWAMP {
+.FOREST {
   background-color: DarkGreen;
 }
 .BEACH {
