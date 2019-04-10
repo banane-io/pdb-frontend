@@ -32,7 +32,10 @@
           <label for="description">Description</label>
           {{currentZone.zone}}
           <label for="actions">Actions</label>
-          {{currentZoneActions}}
+          <button v-for="(action, index) in currentZoneActions"
+            :key="index" @click="doAction(action)">
+            {{action}}
+          </button>
         </div>
       </div>
     </div>
@@ -79,6 +82,15 @@ export default {
           console.log(response);
           console.log('Refreshing data for the grid');
           this.fetchGridData(zone.id);
+        })
+        .catch(console.error);
+    },
+    doAction(action) {
+      console.log(`Moving hero to the new zone with id : ${action}`);
+      this.$http.post(`/api/mapPoint/${this.currentZone.id}/action`, { action })
+        .then((response) => {
+          console.log(response);
+          console.log('Action executed on server-side');
         })
         .catch(console.error);
     },
