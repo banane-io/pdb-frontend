@@ -1,19 +1,21 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import authStore from './components/auth/auth';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  modules: {
+    auth: authStore,
+  },
   state: {
     grid: [],
     neighbors: {},
-    authenticated: false,
-  },
-  getters: {
-    isAuthenticated(state) {
-      return state.authenticated;
-    },
+    currentZone: {},
+    zoneActions: [],
+    hero: null,
+
   },
   mutations: {
     updateGrid(state, grid) {
@@ -22,26 +24,51 @@ export default new Vuex.Store({
     updateNeighbors(state, neighbors) {
       state.neighbors = neighbors;
     },
-    updateAuthenticated(state, authenticated) {
-      state.authenticated = authenticated;
+    updateCurrentZone(state, currentZone) {
+      state.currentZone = currentZone;
+    },
+    updateCurrentZoneActions(state, zoneActions) {
+      state.zoneActions = zoneActions;
+    },
+    updateHero(state, hero) {
+      state.hero = hero;
     },
   },
   actions: {
     getGrid({ commit }, id) {
-      axios.get(`/api/grid/${id}`)
+      console.log(`Calling /api/grid/${id}`);
+      axios
+        .get(`/api/grid/${id}`)
         .then(result => commit('updateGrid', result.data))
         .catch(console.error);
     },
     getNeighbors({ commit }, id) {
-      axios.get(`/api/grid/neighbors/${id}`)
+      console.log(`Calling /api/grid/neighbors/${id}`);
+      axios
+        .get(`/api/grid/neighbors/${id}`)
         .then(result => commit('updateNeighbors', result.data))
         .catch(console.error);
     },
-    setAuthenticated({ commit }) {
-      commit('updateAuthenticated', true);
+    getZone({ commit }, id) {
+      console.log(`Calling /api/mapPoint/${id}`);
+      axios
+        .get(`/api/mapPoint/${id}`)
+        .then(result => commit('updateCurrentZone', result.data))
+        .catch(console.error);
     },
-    unsetAuthenticated({ commit }) {
-      commit('updateAuthenticated', false);
+    getHero({ commit }) {
+      console.log('Calling /api/hero');
+      axios
+        .get('/api/hero')
+        .then(result => commit('updateHero', result.data))
+        .catch(console.error);
+    },
+    getZoneActions({ commit }, id) {
+      console.log(`Calling /api/mapPoint/${id}/actions`);
+      axios
+        .get(`/api/mapPoint/${id}/actions`)
+        .then(result => commit('updateCurrentZoneActions', result.data))
+        .catch(console.error);
     },
   },
 });

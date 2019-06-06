@@ -2,9 +2,20 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link v-if="isLoggedIn" to="/grid">Grid</router-link> |
-      <router-link v-if="!isLoggedIn" to="/login">Login</router-link> |
-      <router-link v-if="!isLoggedIn" to="/register">Register</router-link> |
+      <span v-if="isLoggedIn">
+        <router-link to="/grid">Grid</router-link> |
+      </span>
+      <span v-if="isLoggedIn && !this.$store.state.hero">
+        <router-link to="/heroCreation">
+          Hero creation
+        </router-link> |
+      </span>
+      <span v-if="!isLoggedIn">
+        <router-link to="/login">Login</router-link> |
+      </span>
+      <span v-if="!isLoggedIn">
+        <router-link to="/register">Register</router-link> |
+      </span>
       <button @click="authLogout()" v-if="isLoggedIn" >Logout</button>
     </div>
     <router-view/>
@@ -16,19 +27,13 @@ export default {
   name: 'App',
   computed: {
     isLoggedIn() {
-      return this.$store.getters.isAuthenticated;
+      return this.$store.getters['auth/isAuthenticated'];
     },
   },
   methods: {
     authLogout() {
-      this.$http({
-        method: 'get',
-        url: '/api/logout',
-      }).then((response) => {
-        console.log(response);
-        this.$store.dispatch('unsetAuthenticated');
-        this.$router.push('/');
-      });
+      this.$store.dispatch('auth/authLogout');
+      this.$router.push('/');
     },
   },
 };
