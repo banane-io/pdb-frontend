@@ -15,6 +15,14 @@
       <div>
           {{hero.intelligence}}
       </div>
+      <label for="wood">Wood</label>
+      <div>
+          {{hero.wood}}
+      </div>
+      <label for="stone">Stone</label>
+      <div>
+          {{hero.stone}}
+      </div>
   </div>
 </template>
 
