@@ -86,13 +86,19 @@ export default {
         .catch(console.error);
     },
     doAction(action) {
-      console.log(`Moving hero to the new zone with id : ${action}`);
-      this.$http.post(`/api/mapPoint/${this.currentZone.id}/action`, { action })
-        .then((response) => {
-          console.log(response);
-          console.log('Action executed on server-side');
-        })
-        .catch(console.error);
+      console.log(`Executing action with name : ${action}`);
+      if (action === 'VISIT_BASE') {
+        console.log(`Executing special action with name : ${action}`);
+        this.$router.push('/base');
+      } else {
+        this.$http.post(`/api/mapPoint/${this.currentZone.id}/action`, { action })
+          .then((response) => {
+            console.log(response);
+            console.log('Action executed on server-side');
+            this.fetchGridData(this.$store.state.hero.currentZone);
+          })
+          .catch(console.error);
+      }
     },
   },
 };
