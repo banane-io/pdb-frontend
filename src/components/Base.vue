@@ -1,7 +1,8 @@
 <template>
     <div>
         <span>This is the base vue</span>
-        {{baseResources}}
+        <img alt="Stone icon" src="../assets/stone.jpg">{{baseResources[0]}}
+        <img alt="Wood icon" src="../assets/wood.png">{{baseResources[1]}}
     </div>
 </template>
 <script>
