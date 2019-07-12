@@ -15,7 +15,7 @@ export default new Vuex.Store({
     currentZone: {},
     zoneActions: [],
     hero: null,
-
+    baseResources: [],
   },
   mutations: {
     updateGrid(state, grid) {
@@ -32,6 +32,9 @@ export default new Vuex.Store({
     },
     updateHero(state, hero) {
       state.hero = hero;
+    },
+    updateBaseResources(state, baseResources) {
+      state.baseResources = baseResources;
     },
   },
   actions: {
@@ -68,6 +71,13 @@ export default new Vuex.Store({
       axios
         .get(`/api/mapPoint/${id}/actions`)
         .then(result => commit('updateCurrentZoneActions', result.data))
+        .catch(console.error);
+    },
+    getBaseResources({ commit }) {
+      console.log('Calling /api/base/resources');
+      axios
+        .get('/api/base/resources')
+        .then(result => commit('updateBaseResources', result.data))
         .catch(console.error);
     },
   },

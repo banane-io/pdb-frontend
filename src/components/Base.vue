@@ -1,20 +1,21 @@
 <template>
     <div>
         <span>This is the base vue</span>
+        {{baseResources}}
     </div>
 </template>
 <script>
 export default {
-  data() {
-    return {
-
-    };
+  computed: {
+    baseResources() {
+      return this.$store.state.baseResources || [];
+    },
   },
   methods: {
 
   },
   created() {
-
+    this.$store.dispatch('getBaseResources');
   },
 };
 </script>
