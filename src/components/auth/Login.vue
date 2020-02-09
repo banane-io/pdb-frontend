@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import ROUTES from '../../constant/Routes';
+
 export default {
   data() {
     return {
@@ -27,7 +29,7 @@ export default {
         .then(() => {
           console.log('Fetching hero and then redirecting to /Grid');
           this.$store.dispatch('getHero');
-          this.$router.push('/grid');
+          this.$router.push(ROUTES.GRID.PATH);
         });
     },
   },

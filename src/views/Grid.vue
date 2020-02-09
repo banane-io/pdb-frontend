@@ -44,6 +44,7 @@
 
 <script>
 import Hero from '../components/Hero.vue';
+import ROUTES from '../constant/Routes';
 
 export default {
   name: 'Grid',
@@ -89,7 +90,7 @@ export default {
       console.log(`Executing action with name : ${action}`);
       if (action === 'VISIT_BASE') {
         console.log(`Executing special action with name : ${action}`);
-        this.$router.push('/base');
+        this.$router.push(ROUTES.GRID.PATH);
       } else {
         this.$http.post(`/api/mapPoint/${this.currentZone.id}/action`, { action })
           .then((response) => {

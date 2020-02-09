@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import ROUTES from '../../constant/Routes';
+
 export default {
   data() {
     return {
@@ -47,7 +49,7 @@ export default {
       }).then((response) => {
         console.log(response);
         console.log('Registration successful redirecting to login');
-        this.$router.push('/login');
+        this.$router.push(ROUTES.LOGIN.PATH);
       });
     },
   },
