@@ -46,6 +46,8 @@
 import Hero from '../components/Hero.vue';
 import ROUTES from '../constant/Routes';
 
+console.log(ROUTES);
+
 export default {
   name: 'Grid',
   components: { Hero },
