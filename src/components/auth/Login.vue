@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import ROUTES from '../../constant/Routes';
+
 export default {
   data() {
     return {
@@ -25,9 +27,9 @@ export default {
       const { username, password } = this;
       this.$store.dispatch('auth/authRequest', { username, password })
         .then(() => {
-          console.log('Fetching hero and then redirecting to /');
+          console.log('Fetching hero and then redirecting to /Grid');
           this.$store.dispatch('getHero');
-          this.$router.push('/');
+          this.$router.push(ROUTES.GRID.PATH);
         });
     },
   },

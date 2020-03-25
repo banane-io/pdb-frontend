@@ -5,6 +5,8 @@ import Grid from './views/Grid.vue';
 import Login from './components/auth/Login.vue';
 import Register from './components/auth/Register.vue';
 import HeroCreation from './components/HeroCreation.vue';
+import Base from './components/Base.vue';
+import ROUTES from './constant/Routes';
 
 Vue.use(Router);
 
@@ -17,21 +19,25 @@ export default new Router({
       name: 'home',
       component: Home,
     }, {
-      path: '/grid',
-      name: 'grid',
+      path: ROUTES.GRID.PATH,
+      name: ROUTES.GRID.NAME,
       component: Grid,
     }, {
-      path: '/login',
-      name: 'login',
+      path: ROUTES.LOGIN.PATH,
+      name: ROUTES.LOGIN.NAME,
       component: Login,
     }, {
-      path: '/register',
-      name: 'register',
+      path: ROUTES.REGISTER.PATH,
+      name: ROUTES.REGISTER.NAME,
       component: Register,
     }, {
-      path: '/heroCreation',
-      name: 'heroCreation',
+      path: ROUTES.HERO_CREATION.PATH,
+      name: ROUTES.HERO_CREATION.NAME,
       component: HeroCreation,
+    }, {
+      path: ROUTES.BASE.PATH,
+      name: ROUTES.BASE.NAME,
+      component: Base,
     }, {
       path: '/about',
       name: 'about',

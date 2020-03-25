@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import ROUTES from '../constant/Routes';
+
 export default {
   data() {
     return {
@@ -53,7 +55,7 @@ export default {
       }).then((response) => {
         console.log(response);
         console.log('Creation of the hero successful, moving to /grid');
-        this.$router.push('/grid');
+        this.$router.push(ROUTES.GRID.PATH);
       });
     },
   },
