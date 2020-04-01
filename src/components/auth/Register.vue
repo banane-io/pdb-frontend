@@ -8,6 +8,8 @@
       </div>
 
       <label for="password">Password</label>
+      <div>/!\ Please use unique password for PDB. Things are not secure enough
+        (but this is good advice in general) /!\</div>
       <div>
           <input id="password" type="password" v-model="password" required>
       </div>
