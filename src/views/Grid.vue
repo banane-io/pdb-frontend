@@ -52,8 +52,8 @@ export default {
   name: 'Grid',
   components: { Hero },
   created() {
-    console.log(`Fetching data for hero, grid, neighbors and the zone with zoneId : ${this.$store.state.hero.currentZone}`);
-    this.fetchGridData(this.$store.state.hero.currentZone);
+    console.log(`Fetching data for hero, grid, neighbors and the zone with zoneId : ${this.$store.state.hero?.currentZone}`);
+    this.fetchGridData(this.$store.state.hero?.currentZone);
   },
   computed: {
     grid() {
