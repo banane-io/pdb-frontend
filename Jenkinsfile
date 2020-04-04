@@ -24,8 +24,11 @@ pipeline {
             steps {
                 script {
                     sh 'npm install && npm run build'
-                    sh 'rm -rf /var/www/dev.magames.work'
-                    sh 'cp -r $(pwd)/pdb-frontend/dist /var/www/dev.magames.work'
+                    sh 'll'
+                    sh 'cd $(pwd)/pdb-frontend/dist'
+                    sh 'll'
+                    //sh 'rm -rf /var/www/dev.magames.work'
+                    //sh 'cp -r $(pwd)/pdb-frontend/dist /var/www/dev.magames.work'
                 }
             }
         }
