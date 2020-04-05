@@ -24,10 +24,8 @@ pipeline {
             steps {
                 script {
                     sh 'npm install && npm run build'
-                    sh 'ls'
-                    sh 'ls'
                     sh 'rm -rf /var/www/dev.magames.work/*'
-                    sh 'cp -r /dist /var/www/dev.magames.work'
+                    sh 'cp -r dist /var/www/dev.magames.work/'
                 }
             }
         }
