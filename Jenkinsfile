@@ -12,7 +12,7 @@ pipeline {
                 script {
                     sh 'npm install && npm run build'
                     sh 'rm -rf /var/www/pdb.magames.work/*'
-                    sh 'cp -r dist/* /var/www/dev.magames.work/'
+                    sh 'cp -r dist/* /var/www/pdb.magames.work/'
                 }
             }
         }
