@@ -13,19 +13,23 @@
       <div class="hero">
         <Hero/>
         <div>
-            <button @click="movePlayer(neighbors.NORTH)" v-if="neighbors.NORTH">UP</button>
-            <button v-else disabled>UP</button>
+            <button @click="movePlayer(neighbors.NORTH)" :disabled="!neighbors.NORTH">
+              UP
+            </button>
         </div>
         <div>
-            <button @click="movePlayer(neighbors.WEST)" v-if="neighbors.WEST">LEFT</button>
-            <button v-else disabled>LEFT</button>
+            <button @click="movePlayer(neighbors.WEST)" :disabled="!neighbors.WEST">
+              LEFT
+            </button>
 
-            <button @click="movePlayer(neighbors.EAST)" v-if="neighbors.EAST">RIGHT</button>
-            <button v-else disabled>RIGHT</button>
+            <button @click="movePlayer(neighbors.EAST)" :disabled="!neighbors.EAST">
+              RIGHT
+            </button>
         </div>
         <div>
-            <button @click="movePlayer(neighbors.SOUTH)" v-if="neighbors.SOUTH">DOWN</button>
-            <button v-else disabled>DOWN</button>
+            <button @click="movePlayer(neighbors.SOUTH)" :disabled="!neighbors.SOUTH">
+              DOWN
+            </button>
         </div>
 
         <div class="currentZone">
