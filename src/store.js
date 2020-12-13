@@ -61,7 +61,7 @@ export default new Vuex.Store({
     },
     getHero({ commit }) {
       console.log('Calling /api/hero');
-      axios
+      return axios
         .get('/api/hero')
         .then((result) => commit('updateHero', result.data))
         .catch(console.error);

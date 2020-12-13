@@ -28,8 +28,9 @@ export default {
       this.$store.dispatch('auth/authRequest', { username, password })
         .then(() => {
           console.log('Fetching hero and then redirecting to /Grid');
-          this.$store.dispatch('getHero');
-          this.$router.push(ROUTES.GRID.PATH);
+          this.$store.dispatch('getHero').then(() => {
+            this.$router.push(ROUTES.GRID.PATH);
+          });
         });
     },
   },
