@@ -12,7 +12,17 @@
 </template>
 
 <script lang="ts" setup>
-import { useFusionAuth } from '@fusionauth/vue-sdk';
+import { ref } from 'vue'
 
-const { user, login, logout } = useFusionAuth();
+const user = ref(null)
+
+const login = () => {
+  // TODO: Implement login logic
+  console.log('Login not yet implemented')
+}
+
+const logout = () => {
+  // TODO: Implement logout logic
+  console.log('Logout not yet implemented')
+}
 </script>

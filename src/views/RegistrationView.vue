@@ -58,9 +58,6 @@ const onSubmit = async () => {
         firstName: form.value.firstName,
         lastName: form.value.lastName,
       },
-      registration: {
-        applicationId: import.meta.env.VITE_FUSIONAUTH_CLIENT_ID,
-      },
     })
 
     if (response.status === 200) {
